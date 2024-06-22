@@ -1,5 +1,9 @@
 <?php
-echo json_decode(file_get_contents('./storage/report.json'));
+$file = file_get_contents('./storage/report.json');
+
+$data = json_decode($file);
+
+echo $file;
 
 function RoundIt($ee){
   return round($ee, 2);
