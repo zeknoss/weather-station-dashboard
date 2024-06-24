@@ -1,0 +1,195 @@
+html {
+    height: 100%;
+    margin: 0;
+}
+body {
+    background: #262836;
+    height: 100%;
+    margin: 0;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+}
+
+#app {
+    height: 100%;
+    display: flex;
+}
+
+.wrapper {
+    --box-shadow-color: 0px 0px 36px 0px rgba(0,0,0,0.5);
+    --text-color: #d2d2d2;
+}
+.wrapper.day {
+    --box-shadow-color: 0px 0px 36px 0px rgba(255,255,255,0.5);
+}
+
+.text-digital {
+    font-family: 'DS-Digital', sans-serif;
+    > * {
+        font-family: "Montserrat", sans-serif;
+    }
+}
+.mt-auto {
+    margin-top: auto;
+}
+
+.wrapper {
+    width: 100%;
+    max-width: 960px;
+    margin: auto;
+    display: flex;
+    color: var(--text-color);
+    border-radius: 16px;
+    box-shadow: var(--box-shadow-color);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
+    overflow: hidden;
+    position: relative;
+
+    &.weather-cloudy {
+        background-image: url('/weather-day-cloudy.jpg');
+        &.night {
+            background-image: url('/weather-night-cloudy.jpg');
+        }
+    }
+    &.weather-rainy {
+        background-image: url('/weather-day-rainy.jpg');
+        &.night {
+            background-image: url('/weather-night-rainy.jpg');
+        }
+    }
+    &.weather-thunderstorm {
+        background-image: url('/weather-thunderstorm.jpg');
+    }
+    &.weather-cloudy-partly {
+        background-image: url('/weather-cloudy-partly.jpg');
+        &.night {
+            background-image: url('/weather-cloudy-partly-night.jpg');
+        }
+    }
+    &.weather-clear {
+        background-image: linear-gradient(162deg, rgb(28, 88, 134) 0%, rgba(58,174,243,1) 100%);
+
+        &.night {
+            background-image: url('/weather-night-starry.png');
+        }
+    }
+
+    &:after {
+        position: absolute;
+        inset: 0;
+        border: 1px rgba(#fff, 0.1) solid;
+        pointer-events: none;
+        content: "";
+        border-radius: 16px;
+    }
+
+    aside {
+        backdrop-filter: blur(5px);
+        width: 4rem;
+        display: flex;
+        flex-direction: column;
+
+        a {
+            display: flex;
+            aspect-ratio: 1;
+            color: #fff;
+            transition: all .3s;
+            text-decoration: none;
+            text-align: center;
+            font-weight: 300;
+
+            span {
+                small {
+                    display: block;
+                    font-size: .5em;
+                    text-transform: uppercase;
+                }
+                margin: auto;
+            }
+
+            &:hover {
+                background: rgba(#fff, 0.3);
+            }
+        }        
+    }
+
+    main {
+        padding: 1.5rem;
+        flex-grow: 1;
+        text-shadow: 1px 1px rgba(0,0,0,0.5);
+
+        .row {
+            width: 100%;
+            display: grid;
+            grid-auto-flow: column; 
+            grid-auto-columns: 1fr 1fr 1fr; 
+            gap: 1em 1em;
+
+            &.wide-gap {
+                gap: 1em 2em;
+            }
+
+            .col {
+                &.circular {
+                    aspect-ratio: 1;
+
+                    &:after {
+                        content: "";
+                        position: absolute;
+                        width: 94%;
+                        aspect-ratio: 1;
+                        border: 1px solid rgb(195, 183, 115);
+                        border-radius: 100%;
+                        left: 3%;
+                        top: 0;
+                        z-index: 0;
+                        pointer-events: none;
+                    }
+                }
+                &:not(.circular):after {
+                    content: "";
+                    right: 0;
+                    left: 0;
+                    top: 1.25em;
+                    z-index: 0;
+                    height: 1px;
+                    background: rgba(195,183,115);
+                    position: absolute;
+                }
+
+                position: relative;
+                overflow: hidden;
+
+                h3 {
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    background: #2d62b7;
+                    color: #fff;
+                    text-transform: uppercase;
+                    padding: 3px 5px;
+                    font-size: .7em;
+                    z-index: 1;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 960px) {
+        max-width: calc(480px + 4rem);
+        main {
+            .row {
+                grid-auto-flow: initial;
+                grid-template-columns: ". .";
+            }
+        }
+    }
+
+    footer {
+        text-align: center;
+        padding-top: 2em;
+        font-size: .75em;
+    }
+}
