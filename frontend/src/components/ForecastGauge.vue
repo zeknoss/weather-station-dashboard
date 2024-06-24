@@ -59,32 +59,32 @@ h4 {
     height: 5em;
 
     &.clear {
-        background-image: url('/forecast/clear.png');
+        background-image: url('/images/forecast/clear.png');
 
         &.night {
-            background-image: url('/forecast/clear-night.png');
+            background-image: url('/images/forecast/clear-night.png');
         }
     }
     &.rainy {
-        background-image: url('/forecast/rainy.png');
+        background-image: url('/images/forecast/rainy.png');
     }
     &.cloudy {
-        background-image: url('/forecast/cloudy.png');
+        background-image: url('/images/forecast/cloudy.png');
     }
     &.partially-cloudy {
-        background-image: url('/forecast/partially-cloudy.png');
+        background-image: url('/images/forecast/partially-cloudy.png');
     }
     &.thunderstorm {
-        background-image: url('/forecast/thunderstorm.png');
+        background-image: url('/images/forecast/thunderstorm.png');
     }
     &.freezing-rain {
-        background-image: url('/forecast/freezing-rain.png');
+        background-image: url('/images/forecast/freezing-rain.png');
     }
     &.snowfall {
-        background-image: url('/forecast/snowfall.png');
+        background-image: url('/images/forecast/snowfall.png');
     }
     &.fog {
-        background-image: url('/forecast/fog.png');
+        background-image: url('/images/forecast/fog.png');
     }
 }
 </style>

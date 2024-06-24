@@ -1,1 +1,1 @@
-export default async () => await (await fetch('/config.php')).json()
+export default async () => await (await fetch('https://weather.burakgurbuz.com/config.php')).json()
