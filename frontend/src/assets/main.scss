@@ -3,7 +3,7 @@ html {
     margin: 0;
 }
 body {
-    background: #262836;
+    background: url('/images/bg.jpg');
     height: 100%;
     margin: 0;
     font-family: "Montserrat", sans-serif;
@@ -13,6 +13,7 @@ body {
 #app {
     height: 100%;
     display: flex;
+    padding: 1em 0;
 }
 
 .wrapper {
@@ -20,7 +21,7 @@ body {
     --text-color: #d2d2d2;
 }
 .wrapper.day {
-    --box-shadow-color: 0px 0px 36px 0px rgba(255,255,255,0.5);
+    --box-shadow-color: 0px 0px 36px 0px rgba(113, 132, 255, 0.5);
 }
 
 .text-digital {
@@ -90,6 +91,9 @@ body {
         width: 4rem;
         display: flex;
         flex-direction: column;
+        position: sticky;
+        top: 0;
+        height: auto;
 
         a {
             display: flex;
@@ -188,11 +192,16 @@ body {
     }
 
     @media screen and (max-width: 544px) {
-        max-width: calc(240px + 4rem);
+        max-width: 350px;
+        aside {
+            display: none;
+        }
         main {
+            max-width: 240px;
+            margin: 0 auto;
             .row {
                 grid-auto-flow: initial;
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: 1fr;
             }
         }
     }

@@ -2,7 +2,7 @@
     <div class="col circular">
         <h3>Wind</h3>
         <div class="cardinal">{{ cardinal }}</div>
-        <h2 @click="toggleMode" class="text-digital">{{ value }}<small>{{ windUnit }}</small></h2>
+        <h2 @click="$emit('toggleMode')" class="text-digital">{{ value }}<small>{{ windUnit }}</small></h2>
 
         <div class="direction" :style="{'--angle': angle + 'deg'}"></div>
     </div>
@@ -16,6 +16,7 @@ const props = defineProps({
     gust: String,
     angle: Number,
 });
+defineEmits(['toggleMode']);
 const windUnit = inject('windUnit');
 const value = computed(() => {
     switch (windUnit.value) {
