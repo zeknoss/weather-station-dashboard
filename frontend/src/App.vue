@@ -18,7 +18,7 @@
             <header></header>
             <div class="row">
                 <TempGauge :temp="data.tempf ?? 0" :humidity="data.humidity ?? 0" title="Outdoor" @toggle-temp="toggleTemp" />
-                <WindGauge :gust="data.windgustmph ?? 0" :angle="parseFloat(data.winddir) ?? 0" />
+                <WindGauge :gust="data.windgustmph ?? 0" :angle="parseFloat(data.winddir) ?? 0" @toggle-mode="toggleWind" />
                 <ForecastGauge :pressure="parseFloat(data.baromin) ?? 0" :weather="weather" :slug="weatherSlug" :is-day="isDay" />
                 <TempGauge :temp="data.indoortempf ?? 0" :humidity="data.indoorhumidity ?? 0" title="Indoor" @toggle-temp="toggleTemp" />
             </div>
@@ -84,6 +84,6 @@ nextTick(async () => {
     fetchData();
     forecast.value = await getForecast();
 });
-setInterval(async () => forecast.value = await getForecast(), 36000);
+setInterval(async () => forecast.value = await getForecast(), 1000 * 60 * 60);
 setInterval(fetchData, 10000);
 </script>
