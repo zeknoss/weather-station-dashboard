@@ -2,7 +2,7 @@
 
 ## Abstract
 
-This is a simple project I've created in sigle day for my Bresser WiFi ClearView 7-in-1 weather station.
+This is a simple project I've created in single day for my Bresser WiFi ClearView 7-in-1 weather station.
 
 It kinda mimicks the interface of the station screen to show real time data from the station.
 
