@@ -22,9 +22,9 @@ defineProps({
     isDay: Boolean,
 });
 
-const mode = ref(StorageRepo.get('pressureUnit', 'hpa'));
+const mode = ref(StorageRepo.get('pressureUnit', 'hPa'));
 const toggleMode = () => {
-    mode.value = (mode.value === 'hpa') ? 'bar' : 'hpa';
+    mode.value = (mode.value === 'hPa') ? 'bar' : 'hPa';
     StorageRepo.set('pressureUnit', mode.value);
 };
 </script>
