@@ -1,0 +1,37 @@
+version: '3'
+services:
+  # PHP Service
+  app:
+    build:
+      context: ${PATH_TO_REPOSITORY_DIR}
+      dockerfile: ${PATH_TO_REPOSITORY_DIR}/Dockerfile
+    image: weatherapi
+    container_name: weatherapi
+    restart: unless-stopped
+    tty: true
+    working_dir: /var/www
+    volumes:
+      - ${PATH_TO_REPOSITORY_DIR}/storage:/var/storage
+      - ${PATH_TO_REPOSITORY_DIR}:/var/www
+    networks:
+      - weather-network
+
+  # Nginx Service
+  weatherserver:
+    image: nginx:alpine
+    container_name: weatherserver
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "${EXPOSE_PORT}:80"
+    volumes:
+      - ${PATH_TO_REPOSITORY_DIR}:/var/www
+      - ${PATH_TO_REPOSITORY_DIR}/nginx:/etc/nginx/conf.d
+    networks:
+      - intranet
+      - weather-network
+networks:
+  intranet:
+    external: true
+  weather-network:
+    driver: bridge
