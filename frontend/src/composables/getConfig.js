@@ -1,1 +1,1 @@
-export default async () => await (await fetch('http://127.0.0.1:5500/config.php')).json()
+export default async () => await (await fetch('/config.php')).json()
