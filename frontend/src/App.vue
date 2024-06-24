@@ -54,7 +54,7 @@ const weatherSlug = computed(() => parseWeatherSlug((!forecast.value) ? 0 : fore
 const weather = computed(() => parseWeatherCode((!forecast.value) ? 0 : forecast.value.hourly.weather_code[(new Date).getHours()]));
 
 const fetchData = async () => {
-    data.value = await (await fetch('/report.php')).json();
+    data.value = await (await fetch('https://weather.burakgurbuz.com/report.php')).json();
 };
 
 const tempMode = ref(StorageRepo.get('tempMode', 'celsius'));
