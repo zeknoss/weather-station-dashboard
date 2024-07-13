@@ -3,7 +3,9 @@ html {
     margin: 0;
 }
 body {
-    background: url('/images/bg.jpg');
+    background: url('/images/bg.jpg') no-repeat 50% 50%;
+    background-size: cover;
+    background-attachment: fixed;
     height: 100%;
     margin: 0;
     font-family: "Montserrat", sans-serif;
@@ -13,7 +15,10 @@ body {
 #app {
     height: 100%;
     display: flex;
-    padding: 1em 0;
+    main {
+        width: 100%;
+        overflow: hidden;
+    }
 }
 
 .wrapper {
@@ -47,6 +52,7 @@ body {
     background-size: cover;
     overflow: hidden;
     position: relative;
+    font-size: 14px;
 
     &.weather-cloudy {
         background-image: url('/images/background/weather-day-cloudy.jpg');
@@ -93,6 +99,7 @@ body {
         flex-direction: column;
         position: sticky;
         top: 0;
+        flex-shrink: 0;
         height: auto;
 
         a {
@@ -103,6 +110,13 @@ body {
             text-decoration: none;
             text-align: center;
             font-weight: 300;
+            img, svg {
+                margin: 0.3em auto;
+                object-fit: contain;
+                aspect-ratio: 1;
+                width: 100%;
+                max-width: 40px;
+            }
 
             span {
                 small {
@@ -192,16 +206,25 @@ body {
     }
 
     @media screen and (max-width: 544px) {
-        max-width: 350px;
+        width: 100%;
+        flex-direction: column;
+        font-size: 12px;
+        border-radius: 0;
+        &::after {
+            border-radius: 0;
+        }
         aside {
-            display: none;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: .5em;
+            width: calc(100% - 1em);
+            display: flex;
         }
         main {
-            max-width: 240px;
-            margin: 0 auto;
+            margin: 0;
             .row {
                 grid-auto-flow: initial;
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr 1fr;
             }
         }
     }

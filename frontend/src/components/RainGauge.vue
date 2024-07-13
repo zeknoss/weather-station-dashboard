@@ -74,7 +74,7 @@ const toggleMode = () => {
         text-align: right;
         margin: 0;
         padding-top: 1em;
-        font-size: 3.5em;
+        font-size: 3em;
         font-weight: normal;
 
         small {

@@ -1,7 +1,7 @@
 <template>
     <div class="col circular">
         <h3>{{ title }}</h3>
-        <h2 class="temp text-digital" @click="$emit('toggleTemp')">{{ temp }}<small>{{ tempMode === 'celsius' ? '℃' : '℉' }}</small></h2>
+        <h2 class="temp text-digital" @click="$emit('toggleTemp')">{{ temp }}<Unit :mode="tempMode"/></h2>
         <h2 class="humidity text-digital">{{ humidity }}<small>%</small></h2>
     </div>
 </template>
@@ -9,17 +9,17 @@
 <script setup>
 import { toCelsius } from '@/composables/helpers';
 import { computed } from '@vue/reactivity';
-import { inject } from 'vue';
+import Unit from './Unit.vue';
 
 const props = defineProps({
     temp: String,
     humidity: String,
     title: String,
+    tempMode: String,
 });
 defineEmits(['toggleTemp']);
 
-const tempMode = inject('tempMode');
-const temp = computed(() => tempMode.value === 'celsius' ? toCelsius(props.temp ?? 0) : props.temp);
+const temp = computed(() => props.tempMode === 'celsius' ? toCelsius(props.temp ?? 0) : props.temp);
 </script>
 
 <style scoped lang="scss">

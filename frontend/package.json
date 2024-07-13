@@ -9,7 +9,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.4.29"
+    "apexcharts": "^3.50.0",
+    "swiper": "^11.1.4",
+    "vue": "^3.4.29",
+    "vue-apexcharts": "^1.6.2"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.5",

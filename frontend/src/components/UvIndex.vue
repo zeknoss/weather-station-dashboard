@@ -16,7 +16,7 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
+import { ref } from 'vue';
 
 const props = defineProps({
     uvIndex: Number,
@@ -72,7 +72,7 @@ const mode = ref('uv');
         text-align: right;
         margin: 0;
         padding-top: 1em;
-        font-size: 3.5em;
+        font-size: 3em;
         font-weight: normal;
     }
 }

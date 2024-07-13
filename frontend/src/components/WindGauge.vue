@@ -10,16 +10,16 @@
 
 <script setup>
 import { toKM, toKnots } from '@/composables/helpers';
-import { computed, inject, ref } from 'vue';
+import { computed } from 'vue';
 
 const props = defineProps({
     gust: String,
     angle: Number,
+    windUnit: String,
 });
 defineEmits(['toggleMode']);
-const windUnit = inject('windUnit');
 const value = computed(() => {
-    switch (windUnit.value) {
+    switch (props.windUnit) {
         case 'km/h':
             return toKM(props.gust ?? 0);
         case 'mph':

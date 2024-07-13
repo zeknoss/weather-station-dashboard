@@ -3,10 +3,10 @@
         <h3>Index</h3>
         <div class="flex">
             <div class="mt-auto">
-                <small class="subtitle">Feels Like</small>
+                <small class="subtitle">Feels<br>Like</small>
             </div>
             <h2 @click="$emit('toggleTemp')" class="text-digital">
-                {{ tempMode === 'celsius' ? index.toFixed(2) : toFahrenheit(index) }} <small>{{ tempMode === 'celsius' ? '℃' : '℉' }}</small>
+                {{ tempMode === 'celsius' ? index.toFixed(2) : toFahrenheit(index) }}<Unit :mode="tempMode" />
             </h2>
         </div>
     </div>
@@ -15,15 +15,15 @@
 <script setup>
 import HI from '@/composables/heatIndex';
 import { toCelsius, toFahrenheit } from '@/composables/helpers';
-import { computed, inject } from 'vue';
+import { computed } from 'vue';
+import Unit from './Unit.vue';
 
 const props = defineProps({
     temp: Number,
     humidity: Number,
+    tempMode: String,
 });
 defineEmits(['toggleTemp']);
-
-const tempMode = inject('tempMode');
 
 const hi = new HI();
 const index = computed(() => {
@@ -43,6 +43,7 @@ const index = computed(() => {
     .subtitle {
         color: rgb(195, 183, 115);
         font-size: .6em;
+        line-height: .2em;
     }
     .uv-level {
         width: 15px;
@@ -81,7 +82,7 @@ const index = computed(() => {
         text-align: right;
         margin: 0;
         padding-top: 1em;
-        font-size: 3.5em;
+        font-size: 3em;
         font-weight: normal;
 
         small {
