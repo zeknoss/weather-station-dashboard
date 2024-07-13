@@ -222,6 +222,7 @@ body {
         }
         main {
             margin: 0;
+            width: auto !important;
             .row {
                 grid-auto-flow: initial;
                 grid-template-columns: 1fr 1fr;
