@@ -1,16 +1,18 @@
 <template>
     <div class="col">
-        <h3>Sun</h3>
+        <h3>{{ $t('sun') }}</h3>
         <div class="flex">
             <div class="mt-auto">
                 <div v-if="mode==='uv'" class="uv-level">
                     <span v-for="level of 7" :class="{active: (uvIndex - (level / 7 * 11)) >= 0}" />
                 </div>
-                <small>{{ mode == 'uv' ? 'UV Index' : 'Sun Radiation' }}</small>
+                <small>{{ mode == 'uv' ? $t('uv_index') : $t('sun_radiation') }}</small>
             </div>
-            <h2 @click="mode = (mode === 'uv') ? 'klux' : 'uv'" class="text-digital">
-                {{ mode === 'uv' ? uvIndex.toFixed(1) : radiation.toFixed(1) }}
-            </h2>
+            <h2
+                @click="mode = (mode === 'uv') ? 'klux' : 'uv'"
+                class="text-digital"
+                v-html="(mode === 'uv') ? uvIndex.toFixed(1) : radiation.toFixed(1)"
+            />
         </div>
     </div>
 </template>

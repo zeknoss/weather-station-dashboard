@@ -1,6 +1,8 @@
 import './assets/main.scss';
 
 import { createApp } from 'vue';
+import { i18n } from './composables/i18n';
 import App from './App.vue';
 
-createApp(App).mount('#app');
+const app = createApp(App);
+app.use(i18n).mount('#app');

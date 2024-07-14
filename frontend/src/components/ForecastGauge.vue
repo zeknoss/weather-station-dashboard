@@ -1,6 +1,6 @@
 <template>
     <div class="col circular">
-        <h3>Forecast</h3>
+        <h3>{{ $t('forecast') }}</h3>
         <h2 @click="toggleMode" class="text-digital">
             {{ mode === 'hPa' ? toHPA(pressure).toFixed(0) : pressure.toFixed(2) }}
             <small>{{ mode }}</small>

@@ -12,15 +12,15 @@ export default (code) => {
             return 'Fog';
         case 51:
             return ['Drizzle', 'Light'];
-            case 53:
+        case 53:
             return ['Drizzle', 'Moderate'];
-            case 55:
+        case 55:
             return ['Drizzle', 'Heavy'];
         case 61:
             return ['Rain', 'Light'];
-            case 63:
+        case 63:
             return ['Rain', 'Moderate'];
-            case 65:
+        case 65:
             return ['Rain', 'Heavy'];
         case 66:
             return ['Freezing Rain', 'Light'];

@@ -1,9 +1,9 @@
 <template>
     <div class="forecast" v-if="forecast">
         <header>
-            <h3>Forecast</h3>
-            <a href="#" @click.prevent="viewMode='hourly'" :class="{active: viewMode === 'hourly'}">Hourly</a>
-            <a href="#" @click.prevent="viewMode='daily'" :class="{active: viewMode === 'daily'}">Daily</a>
+            <h3>{{ $t('forecast') }}</h3>
+            <a href="#" @click.prevent="viewMode='hourly'" :class="{active: viewMode === 'hourly'}">{{ $t('hourly') }}</a>
+            <a href="#" @click.prevent="viewMode='daily'" :class="{active: viewMode === 'daily'}">{{ $t('daily') }}</a>
         </header>
 
         <swiper
@@ -20,6 +20,9 @@
                     {{ weather(forecast.hourly.weather_code[(n-1)]) }}
                 </div>
                 <p class="temperature text-digital">{{ forecast.hourly.temperature_2m[(n-1)] }}<unit :mode="tempMode" /></p>
+                <p class="precipitation">
+                    <img src="/images/forecast/precipitation.png" width="24" /><span>{{ forecast.hourly.precipitation[(n-1)] }}mm&nbsp;/&nbsp;{{ forecast.hourly.precipitation_probability[(n-1)] }}%</span>
+                </p>
             </swiper-slide>
         </swiper>
         <swiper
@@ -34,7 +37,12 @@
                 <div class="forecast-visual" :class="[slug(forecast.daily.weather_code[(day-1)]), 'day']">
                     {{ weather(forecast.daily.weather_code[(day-1)]) }}
                 </div>
-                <p class="temperature text-digital">{{ forecast.daily.temperature_2m_min[(day-1)] }}<unit :mode="tempMode" />&nbsp;/&nbsp;{{ forecast.daily.temperature_2m_max[(day-1)] }}<unit :mode="tempMode" /></p>
+                <p class="temperature text-digital">
+                    {{ forecast.daily.temperature_2m_min[(day-1)] }}<unit :mode="tempMode" />&nbsp;/&nbsp;{{ forecast.daily.temperature_2m_max[(day-1)] }}<unit :mode="tempMode" /><br>
+                </p>
+                <p class="precipitation">
+                    <img src="/images/forecast/precipitation.png" width="24" /><span>{{ forecast.daily.precipitation_sum[(day-1)] }}mm&nbsp;/&nbsp;{{ forecast.daily.precipitation_probability_max[(day-1)] }}%</span>
+                </p>
             </swiper-slide>
         </swiper>
     </div>
@@ -102,7 +110,7 @@ const dateDisplay = (date) => (new Date(date)).toLocaleDateString('en-GB', { wee
     }
 
     .forecast-list {
-        height: 10em;
+        height: 11em;
         flex-grow: 1;
         list-style: none;
         cursor: grab;
@@ -111,7 +119,7 @@ const dateDisplay = (date) => (new Date(date)).toLocaleDateString('en-GB', { wee
         .forecast-item {
             display: inline-block;
             width: 10em;
-            height: 10em;
+            height: 11em;
             text-align: center;
             border-left: 1px solid rgba(#fff, 0.3);
             position: relative;
@@ -138,6 +146,10 @@ const dateDisplay = (date) => (new Date(date)).toLocaleDateString('en-GB', { wee
                 padding: 3px 5px;
                 font-size: 0.8em;
                 z-index: 1;
+            }
+
+            p {
+                margin: 0;
             }
 
             .forecast-visual {
@@ -173,6 +185,16 @@ const dateDisplay = (date) => (new Date(date)).toLocaleDateString('en-GB', { wee
                 }
                 &.fog {
                     background-image: url('/images/forecast/fog.png');
+                }
+            }
+
+            .precipitation {
+                display: flex;
+                margin: .5em 0;
+                justify-content: center;
+                align-items: center;
+                span {
+                    margin-left: 5px;
                 }
             }
         }

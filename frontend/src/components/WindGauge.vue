@@ -1,6 +1,6 @@
 <template>
     <div class="col circular">
-        <h3>Wind</h3>
+        <h3>{{$t('wind')}}</h3>
         <div class="cardinal">{{ cardinal }}</div>
         <h2 @click="$emit('toggleMode')" class="text-digital">{{ value }}<small>{{ windUnit }}</small></h2>
 

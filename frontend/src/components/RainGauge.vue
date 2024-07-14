@@ -1,9 +1,9 @@
 <template>
     <div class="col">
-        <h3>Rain</h3>
+        <h3>{{ $t('precipitation') }}</h3>
         <div class="flex">
             <div class="mt-auto">
-                <small>{{ mode == 'rainIn' ? 'Rate' : 'Daily Rate' }}</small>
+                <small>{{ mode == 'rainIn' ? $t('rate') : $t('daily_rate') }}</small>
             </div>
             <h2 @click="toggleMode" class="text-digital">
                 {{ mode === 'rainIn' ? rainIn : dailyRainIn }} <small>mm/h</small>

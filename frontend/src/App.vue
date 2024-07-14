@@ -3,14 +3,20 @@
         <aside>
             <a href="#" @click.prevent="toggleTemp">
                 <span>
-                    <small>Temp Unit</small>
+                    <small>{{ $t('temp_unit') }}</small>
                     <Unit :mode="tempMode" tag="span" />
                 </span>
             </a>
             <a href="#" @click.prevent="toggleWind">
                 <span>
-                    <small>Wind Unit</small>
+                    <small>{{ $t('wind_unit') }}</small>
                     {{ windUnit }}
+                </span>
+            </a>
+            <a href="#" @click.prevent="toggleLocale">
+                <span>
+                    <small>{{ $t('locale') }}</small>
+                    {{ $i18n.locale }}
                 </span>
             </a>
             <a href="https://weather.com/tr-TR/weather/today/l/fcf795dd48b1fb86409cbf04bddd1f1531b0b1d7468d1f0a6c7cfc21dc2203f6" target="_blank">
@@ -22,10 +28,10 @@
         </aside>
         <main v-if="data">
             <div class="row">
-                <TempGauge :temp="data.tempf ?? 0" :humidity="data.humidity ?? 0" title="Outdoor" :temp-mode="tempMode" @toggle-temp="toggleTemp" />
+                <TempGauge :temp="data.tempf ?? 0" :humidity="data.humidity ?? 0" :title="$t('outdoor')" :temp-mode="tempMode" @toggle-temp="toggleTemp" />
                 <WindGauge :gust="data.windgustmph ?? 0" :angle="parseFloat(data.winddir) ?? 0" @toggle-mode="toggleWind" :wind-unit="windUnit" />
-                <ForecastGauge :pressure="parseFloat(data.baromin) ?? 0" :weather="weather" :slug="weatherSlug" :is-day="isDay" />
-                <TempGauge :temp="data.indoortempf ?? 0" :humidity="data.indoorhumidity ?? 0" :temp-mode="tempMode" title="Indoor" @toggle-temp="toggleTemp" />
+                <ForecastGauge :pressure="parseFloat(data.baromin) ?? 0" :weather="$t('weather_code.' + weather)" :slug="weatherSlug" :is-day="isDay" />
+                <TempGauge :temp="data.indoortempf ?? 0" :humidity="data.indoorhumidity ?? 0" :temp-mode="tempMode" :title="$t('indoor')" @toggle-temp="toggleTemp" />
             </div>
             <div class="row wide-gap">
                 <HeatIndex :temp="parseFloat(data.tempf ?? 0, 2)" :humidity="parseFloat(data.humidity ?? 0, 2)" :temp-mode="tempMode" @toggle-temp="toggleTemp" />
@@ -34,7 +40,7 @@
                 <HeatIndex :temp="parseFloat(data.indoortempf ?? 0, 2)" :humidity="parseFloat(data.indoorhumidity ?? 0, 2)" :temp-mode="tempMode" @toggle-temp="toggleTemp" />
             </div>
             <weather-forecast :forecast="forecast" :temp-mode="tempMode" />
-            <footer>Last Updated: {{ data.last_modified }}</footer>
+            <footer>{{ $t('last_updated') }} {{ (new Date(data.last_modified)).toLocaleString() }}</footer>
         </main>
     </div>
 </template>
@@ -52,6 +58,8 @@ import RainGauge from './components/RainGauge.vue';
 import StorageRepo from './composables/storage';
 import WeatherForecast from './components/WeatherForecast.vue';
 import Unit from './components/Unit.vue';
+import { toggleLocale } from './composables/i18n';
+
 
 const data = ref(null);
 const forecast = ref(null);
@@ -60,7 +68,7 @@ const isDay = computed(() => {
     return forecast.value.hourly.is_day[(new Date).getHours()] === 1;
 });
 const weatherSlug = computed(() => parseWeatherSlug((!forecast.value) ? 0 : forecast.value.hourly.weather_code[(new Date).getHours()]));
-const weather = computed(() => parseWeatherCode((!forecast.value) ? 0 : forecast.value.hourly.weather_code[(new Date).getHours()]));
+const weather = computed(() => (!forecast.value) ? 0 : forecast.value.hourly.weather_code[(new Date).getHours()]);
 
 const fetchData = async () => {
     data.value = await (await fetch(import.meta.env.VITE_APP_URL + 'report.php')).json();

@@ -1,9 +1,9 @@
 <template>
     <div class="col">
-        <h3>Index</h3>
+        <h3>{{ $t('heat_index') }}</h3>
         <div class="flex">
             <div class="mt-auto">
-                <small class="subtitle">Feels<br>Like</small>
+                <small class="subtitle" v-html="$t('feels_like')" />
             </div>
             <h2 @click="$emit('toggleTemp')" class="text-digital">
                 {{ tempMode === 'celsius' ? index.toFixed(2) : toFahrenheit(index) }}<Unit :mode="tempMode" />
