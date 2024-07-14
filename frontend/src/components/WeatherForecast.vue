@@ -2,8 +2,8 @@
     <div class="forecast" v-if="forecast">
         <header>
             <h3>Forecast</h3>
-            <a href="#" @click="viewMode='hourly'" :class="{active: viewMode === 'hourly'}">Hourly</a>
-            <a href="#" @click="viewMode='daily'" :class="{active: viewMode === 'daily'}">Daily</a>
+            <a href="#" @click.prevent="viewMode='hourly'" :class="{active: viewMode === 'hourly'}">Hourly</a>
+            <a href="#" @click.prevent="viewMode='daily'" :class="{active: viewMode === 'daily'}">Daily</a>
         </header>
 
         <swiper
