@@ -1,0 +1,41 @@
+{
+    "manifest_version": 2,
+    "name": "Weatherstation Dashboard",
+    "description": "Displays your weatherstation dashboard in Firefox Sidebar",
+    "version": "1.0",
+    "browser_specific_settings": {
+        "gecko": {
+            "strict_min_version": "54.0a1"
+        }
+    },
+    "sidebar_action": {
+        "default_icon": "icons/icon.png",
+        "default_title" : "Weatherstation Dashboard",
+        "default_panel": "sidebar/sidebar.html"
+    },
+    "icons": {
+        "48": "icons/icon.png"
+    },
+    "commands": {
+        "_execute_sidebar_action": {
+            "suggested_key": {
+                "default": "Ctrl+Alt+W"
+            }
+        }
+    },
+    "browser_action": {
+        "default_icon": {
+            "48": "icons/icon.png"
+        },
+        "default_title": "Weatherstation Dashboard"
+    },
+    "background": {
+        "scripts": [
+            "background.js"
+        ]
+    },
+    "permissions": ["storage"],
+    "options_ui": {
+        "page": "settings/settings.html"
+    }
+}
