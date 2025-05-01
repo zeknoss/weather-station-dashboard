@@ -6,7 +6,7 @@
                 <small>{{ mode == 'rainIn' ? $t('rate') : $t('daily_rate') }}</small>
             </div>
             <h2 @click="toggleMode" class="text-digital">
-                {{ mode === 'rainIn' ? rainIn * 25.4 : dailyRainIn * 25.4 }} <small>mm/h</small>
+                {{ (mode === 'rainIn' ? rainIn * 25.4 : dailyRainIn * 25.4).toFixed(2) }} <small>mm/h</small>
             </h2>
         </div>
     </div>
