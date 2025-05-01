@@ -24,7 +24,7 @@ const props = defineProps({
 const mode = ref(storage.get('rainMode', 'rainIn'));
 const toggleMode = () => {
     mode.value = (mode.value === 'rainIn') ? 'dailyRainIn' : 'rainIn';
-    storage.set('rainMode', mode.value);
+    storage.set('rainMode', mode.value * 25.4);
 };
 </script>
 
