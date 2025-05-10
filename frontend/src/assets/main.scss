@@ -47,39 +47,36 @@ body {
     color: var(--text-color);
     border-radius: 16px;
     box-shadow: var(--box-shadow-color);
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
-    background-size: cover;
     overflow: hidden;
     position: relative;
     font-size: 14px;
 
     &.weather-cloudy {
-        background-image: url('/images/background/weather-day-cloudy.jpg');
+        --bg: url('/images/background/weather-day-cloudy.jpg');
         &.night {
-            background-image: url('/images/background/weather-night-cloudy.jpg');
+            --bg: url('/images/background/weather-night-cloudy.jpg');
         }
     }
     &.weather-rainy {
-        background-image: url('/images/background/weather-day-rainy.jpg');
+        --bg: url('/images/background/weather-day-rainy.jpg');
         &.night {
-            background-image: url('/images/background/weather-night-rainy.jpg');
+            --bg: url('/images/background/weather-night-rainy.jpg');
         }
     }
     &.weather-thunderstorm {
-        background-image: url('/images/background/weather-thunderstorm.jpg');
+        --bg: url('/images/background/weather-thunderstorm.jpg');
     }
     &.weather-partially-cloudy {
-        background-image: url('/images/background/weather-cloudy-partly.jpg');
+        --bg: url('/images/background/weather-cloudy-partly.jpg');
         &.night {
-            background-image: url('/images/background/weather-cloudy-partly-night.jpg');
+            --bg: url('/images/background/weather-cloudy-partly-night.jpg');
         }
     }
     &.weather-clear {
-        background-image: linear-gradient(162deg, rgb(28, 88, 134) 0%, rgba(58,174,243,1) 100%);
+        --bg: linear-gradient(162deg, rgb(28, 88, 134) 0%, rgba(58,174,243,1) 100%);
 
         &.night {
-            background-image: url('/images/background/weather-night-starry.png');
+            --bg: url('/images/background/weather-night-starry.png');
         }
     }
 
@@ -90,6 +87,20 @@ body {
         pointer-events: none;
         content: "";
         border-radius: 16px;
+        backdrop-filter: blur(2px);
+        z-index: 1;
+    }
+    &:before {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        content: "";
+        background-image: var(--bg);
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        background-size: cover;
+        filter: brightness(.7);
+        z-index: 0;
     }
 
     aside {
@@ -101,6 +112,7 @@ body {
         top: 0;
         flex-shrink: 0;
         height: auto;
+        z-index: 4;
 
         a {
             display: flex;
@@ -137,6 +149,7 @@ body {
         padding: 1.5rem;
         flex-grow: 1;
         text-shadow: 1px 1px rgba(0,0,0,0.5);
+        z-index: 3;
 
         .row {
             width: 100%;
